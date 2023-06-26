@@ -1,7 +1,9 @@
 #include<iostream>
 #include"some_base_funcions.h"
-///DES tables
 
+char choice;
+
+///DES tables
 //shift info
 int shift_amount[17]={0,1,1,2,2,2,2,2,2,1,2,2,2,2,2,2,1};
 //pc1
@@ -107,12 +109,18 @@ void s_box(int *R,int *newR);
 
 int main()
 {
+    std::cout<<"Enter Choice Encryption(E) / Decryption(D) :";
+    std::cin>>choice;
     int *msg;
     msg=new int[64];
     int *key64;
     key64=new int[64];
 
+    if(choice=='E')
     IO::input(msg,16,"PLAIN TEXT [16 hex digits]");
+    else if(choice=='D')
+    IO::input(msg,16,"CIPHER TEXT [16 hex digits]");
+
     std::cout<<std::endl<<std::endl;
     IO::input(key64,16,"KEY [16 hex digits]");
 
@@ -298,7 +306,10 @@ void first_XOR(int* ER,int** key,int round_no,int* Result)
 {
 for(int i=0;i<48;i++)
 {
+    if(choice=='E')
     Result[i]=ER[i]^key[round_no][i];
+    else if(choice=='D')
+    Result[i]=ER[i]^key[17-round_no][i];
 }
 }
 void scnd_XOR(int* L,int* R,int* Result,int** key,int round_no)
