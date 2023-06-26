@@ -175,7 +175,10 @@ int main()
     }
 
     std::cout<<"\n\n==================\n";
+    if(choice=='E')
     std::cout<<"Cipher TEXT :";
+    else if(choice=='D')
+    std::cout<<"Plain TEXT :";
     IO::show_in_hex_from_bin(msg_finally_permutted,64);
     std::cout<<"\n==================\n";
     std::cout<<std::endl<<std::endl;
