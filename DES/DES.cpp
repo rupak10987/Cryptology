@@ -1,6 +1,6 @@
 #include<iostream>
 #include"some_base_funcions.h"
-
+#include<windows.h>
 char choice;
 
 ///DES tables
@@ -109,7 +109,9 @@ void s_box(int *R,int *newR);
 
 int main()
 {
-    std::cout<<"Enter Choice Encryption(E) / Decryption(D) :";
+    while(true)
+    {
+        std::cout<<"Enter Choice Encryption(E) / Decryption(D) :";
     std::cin>>choice;
     int *msg;
     msg=new int[64];
@@ -182,6 +184,8 @@ int main()
     IO::show_in_hex_from_bin(msg_finally_permutted,64);
     std::cout<<"\n==================\n";
     std::cout<<std::endl<<std::endl;
+    }
+
     return 0;
 }
 
