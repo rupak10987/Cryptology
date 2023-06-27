@@ -252,7 +252,7 @@ case 7:
     break;
 }
 
-IO::decToBinary(data,&newR[i*4]);
+IO::decToBinary(data,&newR[i*4],4);
 }
 }
 

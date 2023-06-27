@@ -1,6 +1,6 @@
 namespace IO{
 
-void decToBinary(int n,int *start)
+void decToBinary(int n,int *start,int a_size)
 {
     //initialize the array
     for(int j=0;j<4;j++)
@@ -10,7 +10,7 @@ void decToBinary(int n,int *start)
     while (n > 0) {
 
         // storing remainder in binary array
-        start[3-i] = n % 2;
+        start[a_size-1-i] = n % 2;
         n = n / 2;
         i++;
     }
@@ -193,6 +193,42 @@ for(int k=0;k<msize/4;k++)
       std::cout<<hex[j];
   }
 }
+}
+
+
+
+
+void input_charecters(int *bin_array)
+{
+std::cout<<"\nINPUT PASSWORD [max 56 ascii charecters] :";
+char *chars;
+chars=new char[56];
+int i=0;
+while(1)
+{
+    char c=std::cin.get();
+    if (c == '\n')
+    break;
+    chars[i]=c;
+    i++;
+}
+int m_size=i*8;
+std::cout<<"password size="<<m_size<<"\n";
+
+for(int j=0;j<m_size/8;j++)
+{
+decToBinary((int)chars[j],&bin_array[j*8],8);
+}
+
+for(int j=m_size+1;j<512-64;j++)
+{
+bin_array[j]=0;
+}
+
+decToBinary(m_size,&bin_array[512-64],64);
+
+bin_array[m_size]=1;
+
 }
 
 };
